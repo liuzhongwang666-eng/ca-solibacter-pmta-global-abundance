@@ -1,0 +1,41 @@
+project: Result5_SMAG_global_abundance
+target_taxa:
+  - Candidatus Solibacter
+  - Ca. Solibacter
+  - Solibacter
+taxonomy_rank_priority:
+  - genus
+  - family
+  - order
+  - class
+metadata_required_columns:
+  - sample_id
+  - sra_accession
+  - latitude
+  - longitude
+  - soil_pH
+  - ecosystem
+mapping_thresholds:
+  read_identity: 0.95
+  aligned_fraction: 0.90
+mag_qc:
+  medium:
+    completeness_min: 70
+    contamination_max: 10
+  high:
+    completeness_min: 90
+    contamination_max: 5
+pmtA_detection:
+  blastp_identity_min: 40
+  query_coverage_min: 70
+  evalue_max: 1e-20
+  hmm_evalue_max: 1e-10
+abundance_outputs:
+  - Candidatus_Solibacter_abundance
+  - pmtA_abundance
+  - pmtA_per_Solibacter_ratio
+statistics:
+  primary: spearman
+  secondary:
+    - linear_model
+    - mixed_effect_model

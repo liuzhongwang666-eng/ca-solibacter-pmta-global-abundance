@@ -1,0 +1,40 @@
+# Large raw data
+data/raw/
+data/processed/solibacter_mags/
+data/processed/prodigal_solibacter/
+data/raw/reads/
+*.sra
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.sam
+*.bam
+*.bai
+*.tar
+*.tar.gz
+mag.tar.gz
+mag.tar.gz.*
+
+# Large or reproducible outputs
+logs/
+results/
+results/coverm*
+results/pmta_marker_blastx*
+results/metagraph/
+results/figures/
+*.dmnd
+*.mmi
+
+# Runtime/cache files
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+
+# Local editor/environment files
+.idea/
+.vscode/
+.venv/
+*.log
