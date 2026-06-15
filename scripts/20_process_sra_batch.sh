@@ -33,8 +33,10 @@ PMTA_MARKERS="${PMTA_MARKER_DIR}/functional_pmta_marker_candidates.faa"
 PMTA_DB_PREFIX="${PMTA_MARKER_DIR}/functional_pmta_marker_candidates"
 PMTA_OUT_DIR="${ROOT}/results/pmta_marker_blastx_all28"
 LOG_DIR="${ROOT}/logs/batches"
+TMP_DIR="${ROOT}/data/tmp"
 
-mkdir -p "${READ_DIR}" "${COVERM_DIR}" "${PMTA_OUT_DIR}" "${LOG_DIR}"
+mkdir -p "${READ_DIR}" "${COVERM_DIR}" "${PMTA_OUT_DIR}" "${LOG_DIR}" "${TMP_DIR}"
+export TMPDIR="${TMP_DIR}"
 
 require_tool() {
   if ! command -v "$1" >/dev/null 2>&1; then
@@ -102,7 +104,7 @@ while read -r srr; do
     echo "CoverM output exists for ${srr}; skipping Solibacter mapping."
   else
     echo "[coverm] ${srr}"
-    coverm genome \
+    TMPDIR="${TMP_DIR}" coverm genome \
       --genome-fasta-directory "${MAG_DIR}" \
       --coupled "${r1}" "${r2}" \
       --methods relative_abundance trimmed_mean covered_fraction count \
