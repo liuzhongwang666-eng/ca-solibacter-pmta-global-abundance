@@ -19,16 +19,16 @@ The workflow intentionally avoids treating exact nucleotide `pmtA` mapping as th
 
 ```text
 SMAG metadata and MAG catalogue
-→ screen candidate Candidatus Solibacter MAGs
-→ extract Solibacter MAG references
-→ map metagenomic reads to Solibacter MAGs with CoverM
-→ calculate Candidatus Solibacter relative abundance
+-> screen candidate Candidatus Solibacter MAGs
+-> extract Solibacter MAG references
+-> map metagenomic reads to Solibacter MAGs with CoverM
+-> calculate Candidatus Solibacter relative abundance
 
 Ellin6076 gene101949 functional PmtA protein
-→ identify high-confidence PmtA-like protein markers in Solibacter MAGs
-→ translated metagenomic read search with DIAMOND blastx
-→ calculate functional PmtA marker abundance
-→ combine Solibacter abundance and PmtA marker abundance
+-> identify high-confidence PmtA-like protein markers in Solibacter MAGs
+-> translated metagenomic read search with DIAMOND blastx
+-> calculate functional PmtA marker abundance
+-> combine Solibacter abundance and PmtA marker abundance
 ```
 
 ## Repository Structure
@@ -225,6 +225,7 @@ Additional documentation is available in `docs/`:
 - `REMOTE_PILOT_3_SAMPLES.md`
 - `REMOTE_SERVER_AND_GLOBAL_ABUNDANCE_GUIDE.md`
 - `PMTA_FUNCTIONAL_MARKER_WORKFLOW.md`
+- `SRA_BATCH_PROCESSING_ORDER.md`
 
 ## Data Availability
 

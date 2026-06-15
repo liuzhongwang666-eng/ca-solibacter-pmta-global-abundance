@@ -86,7 +86,7 @@ while read -r srr; do
     echo "Reads already exist for ${srr}; skipping download/conversion."
   else
     echo "[download] ${srr}"
-    prefetch "${srr}" --output-directory "${READ_DIR}"
+    prefetch "${srr}" --output-directory "${READ_DIR}" --max-size 200G
     echo "[fasterq-dump] ${srr}"
     fasterq-dump "${READ_DIR}/${srr}" --split-files --threads "${THREADS}" -O "${READ_DIR}"
     echo "[compress] ${srr}"
