@@ -203,6 +203,30 @@ The combined output is:
 results/all28_solibacter_pmta_combined_summary.csv
 ```
 
+## Acidic-soil Raw-reads Extension
+
+Low-quality NCBI `Candidatus Solibacter` MAGs are used only as source-project clues, not as mapping references. Raw metagenomic reads from soil-confirmed source projects are mapped back to the existing Solibacter MAG reference set.
+
+Generate NCBI source-project runs and curate the acidic-soil pilot set:
+
+```bash
+python3 scripts/23_fetch_ncbi_solibacter_source_runs.py
+python3 scripts/24_curate_acidic_soil_sra_candidates.py
+```
+
+Run the extension pilot:
+
+```bash
+THREADS=8 bash scripts/25_process_acidic_soil_extension_batch.sh config/acidic_soil_pilot_sra_accessions.txt
+python3 scripts/26_summarize_acidic_soil_extension.py
+```
+
+The extension output is:
+
+```text
+results/acidic_soil_solibacter_pmta_abundance_summary.csv
+```
+
 ## Output Interpretation
 
 The combined summary table includes:
@@ -226,6 +250,7 @@ Additional documentation is available in `docs/`:
 - `REMOTE_SERVER_AND_GLOBAL_ABUNDANCE_GUIDE.md`
 - `PMTA_FUNCTIONAL_MARKER_WORKFLOW.md`
 - `SRA_BATCH_PROCESSING_ORDER.md`
+- `ACIDIC_SOIL_RAW_READS_EXTENSION_WORKFLOW.md`
 
 ## Data Availability
 
