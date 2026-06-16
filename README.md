@@ -214,17 +214,26 @@ python3 scripts/23_fetch_ncbi_solibacter_source_runs.py
 python3 scripts/24_curate_acidic_soil_sra_candidates.py
 ```
 
-Run the extension pilot:
+Run the global balanced acidic-soil pilot:
 
 ```bash
-THREADS=8 bash scripts/25_process_acidic_soil_extension_batch.sh config/acidic_soil_pilot_sra_accessions.txt
-python3 scripts/26_summarize_acidic_soil_extension.py
+THREADS=8 bash scripts/25_process_acidic_soil_extension_batch.sh config/global_acidic_soil_balanced_pilot_sra_accessions.txt
+python3 scripts/26_summarize_acidic_soil_extension.py \
+  --samples config/global_acidic_soil_balanced_pilot_sra_accessions.txt \
+  --metadata results/global_acidic_soil_balanced_candidates.tsv \
+  --out results/global_acidic_soil_balanced_solibacter_pmta_summary.csv
 ```
 
 The extension output is:
 
 ```text
-results/acidic_soil_solibacter_pmta_abundance_summary.csv
+results/global_acidic_soil_balanced_solibacter_pmta_summary.csv
+```
+
+The GitHub-visible candidate metadata example is stored at:
+
+```text
+results_example/global_acidic_soil_balanced_candidates.tsv
 ```
 
 ## Output Interpretation

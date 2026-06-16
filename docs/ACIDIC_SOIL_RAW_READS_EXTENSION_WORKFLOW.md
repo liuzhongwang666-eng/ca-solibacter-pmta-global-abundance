@@ -115,7 +115,33 @@ These represent three soil project groups:
 - `PRJNA682830`: high-severity burned soil, Wyoming, USA.
 - `PRJNA746701`: Antarctic soil, Byers Peninsula, Livingston Island.
 
-## 6. Remote processing commands
+This 15-sample set is retained as an NCBI Solibacter source-project pilot, but it is not globally balanced.
+
+## 6. Global balanced acidic-soil pilot
+
+For the first global pilot, use the 40-sample balanced set:
+
+```text
+config/global_acidic_soil_balanced_pilot_sra_accessions.txt
+results/global_acidic_soil_balanced_candidates.tsv
+```
+
+This set covers Asia, Europe, North America, South America, Africa, Oceania, and Antarctica, with five samples per group:
+
+| Group | Continent | Soil type | BioProject | n |
+|---|---|---|---|---:|
+| Asia red/acid soil | Asia | China red/acid soil | `PRJNA1478117` | 5 |
+| Asia acidic paddy soil | Asia | acidic paddy soil | `PRJNA1337480` | 5 |
+| Europe acidic forest soil | Europe | acidic forest soil | `PRJNA1431341` | 5 |
+| North America peat/permafrost soil | North America | peat/permafrost/tundra soil | `PRJNA1474608` | 5 |
+| South America Amazon/tropical soil candidate | South America | Amazon/tropical soil, pH to confirm | `PRJNA1470217` | 5 |
+| Africa acidic/Ferralsol/Acrisol candidate | Africa | acidic soil/Ferralsol/Acrisol candidate, pH to confirm | `PRJNA703480` | 5 |
+| Oceania acid sulfate soil | Oceania | Australian acid sulfate soil | `PRJNA1016489` | 5 |
+| Antarctica polar soil | Antarctica | Antarctic polar soil | `PRJNA746701` | 5 |
+
+The 40-sample balanced set is recommended for the first Result 5 global distribution run.
+
+## 7. Remote processing commands
 
 Run on the remote server:
 
@@ -128,25 +154,47 @@ export PATH=/root/autodl-tmp/tools/sratoolkit.3.4.1-ubuntu64/bin:$PATH
 hash -r
 ```
 
-Process the pilot extension set:
+Process the NCBI Solibacter source-project pilot set:
 
 ```bash
 THREADS=8 bash scripts/25_process_acidic_soil_extension_batch.sh config/acidic_soil_pilot_sra_accessions.txt
 ```
 
-Summarize results:
+Process the global balanced acidic-soil pilot set:
 
 ```bash
-python3 scripts/26_summarize_acidic_soil_extension.py
+THREADS=8 bash scripts/25_process_acidic_soil_extension_batch.sh config/global_acidic_soil_balanced_pilot_sra_accessions.txt
 ```
 
-Final output:
+Summarize the global balanced pilot results:
+
+```bash
+python3 scripts/26_summarize_acidic_soil_extension.py \
+  --samples config/global_acidic_soil_balanced_pilot_sra_accessions.txt \
+  --metadata results/global_acidic_soil_balanced_candidates.tsv \
+  --out results/global_acidic_soil_balanced_solibacter_pmta_summary.csv
+```
+
+Global balanced output:
 
 ```text
-results/acidic_soil_solibacter_pmta_abundance_summary.csv
+results/global_acidic_soil_balanced_solibacter_pmta_summary.csv
 ```
 
-## 7. Detection thresholds
+## 8. T6 paddy-soil MAG clue
+
+The four low-quality T6 paddy-soil MAGs from `PRJNA1004092` remain important China paddy-soil Solibacter clues:
+
+```text
+GCA_032665965.1
+GCA_032666425.1
+GCA_032663185.1
+GCA_032662945.1
+```
+
+However, current NCBI SRA/E-utilities searches did not return raw SRA runs for `PRJNA1004092` or the corresponding BioSamples. Therefore, these MAGs are not used for reads mapping and are not added to the reference set. The Asia acidic paddy-soil group in the balanced pilot substitutes downloadable paddy-soil metagenome samples for this missing raw-read source.
+
+## 9. Detection thresholds
 
 Continuous abundance values should always be retained.
 
@@ -173,7 +221,7 @@ Avoid:
 exact nucleotide pmtA gene abundance
 ```
 
-## 8. Leave-one-sample-out mapping
+## 10. Leave-one-sample-out mapping
 
 If a future acidic-soil extension sample is also the source of a MAG in the Solibacter reference set, add it to:
 
