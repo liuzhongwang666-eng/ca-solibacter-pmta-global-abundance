@@ -217,12 +217,21 @@ python3 scripts/24_curate_acidic_soil_sra_candidates.py
 Run the global balanced acidic-soil pilot:
 
 ```bash
-THREADS=8 bash scripts/25_process_acidic_soil_extension_batch.sh config/global_acidic_soil_balanced_pilot_sra_accessions.txt
+THREADS=8 bash scripts/25_process_acidic_soil_extension_batch.sh config/global_acidic_soil_balanced_pilot_sra_accessions_v2.txt
 python3 scripts/26_summarize_acidic_soil_extension.py \
-  --samples config/global_acidic_soil_balanced_pilot_sra_accessions.txt \
-  --metadata results/global_acidic_soil_balanced_candidates.tsv \
-  --out results/global_acidic_soil_balanced_solibacter_pmta_summary.csv
+  --samples config/global_acidic_soil_balanced_pilot_sra_accessions_v2.txt \
+  --metadata results/global_acidic_soil_balanced_candidates_v2.tsv \
+  --out results/global_acidic_soil_balanced_solibacter_pmta_summary_v2.csv
 ```
+
+The recommended global balanced set is v2. It applies BioProject-level deduplication and keeps only soil-confirmed records with coordinates:
+
+```text
+results/global_acidic_soil_balanced_candidates_v2.tsv
+config/global_acidic_soil_balanced_pilot_sra_accessions_v2.txt
+```
+
+It currently contains 33 high-quality samples. See `docs/GLOBAL_BALANCED_PILOT_V2.md`.
 
 The extension output is:
 
